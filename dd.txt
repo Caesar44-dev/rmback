@@ -1,0 +1,13 @@
+
+
+.\venv\Scripts\activate
+
+.\venv\Scripts\deactivate
+
+pip install -r requirements.txt
+
+pip freeze > requirements.txt
+
+pip install paquete1
+
+pyinstaller --onefile rmback.py
