@@ -45,5 +45,11 @@ def main():
     process_folder(input_folder)
     print("Proceso completado.")
 
+    another_folder = input("¿Desea procesar otra carpeta? (Sí/No): ").lower()
+    if another_folder.startswith('s'):
+        main()
+    else:
+        print("Programa cerrado.")
+
 if __name__ == "__main__":
     main()
