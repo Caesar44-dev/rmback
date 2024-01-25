@@ -2,6 +2,8 @@ import os
 import sys
 import argparse
 from rembg import remove
+import tkinter as tk
+from tkinter import filedialog
 
 def remove_background(input_path, output_path):
     with open(input_path, "rb") as input_file:
@@ -19,12 +21,22 @@ def process_folder(input_folder):
         remove_background(input_path, output_path)
         print(f"Fondo eliminado y archivo reemplazado: {output_path}")
 
+def open_folder_dialog():
+    root = tk.Tk()
+    root.withdraw()
+    folder_path = filedialog.askdirectory(title="Seleccione la carpeta de entrada")
+    return folder_path
+
 def main():
     parser = argparse.ArgumentParser(description='Eliminar fondo de imágenes en una carpeta.')
-    parser.add_argument('input_folder', type=str, help='Ruta de la carpeta de entrada')
+    parser.add_argument('--input_folder', type=str, help='Ruta de la carpeta de entrada')
+
     args = parser.parse_args()
 
-    input_folder = args.input_folder
+    if args.input_folder:
+        input_folder = args.input_folder
+    else:
+        input_folder = open_folder_dialog()
 
     if not os.path.exists(input_folder):
         print("Error: La carpeta de entrada especificada no existe.")
